@@ -2,8 +2,8 @@
 #include <X11/XF86keysym.h>
 
 #define NUMCOLORS 4
-#define MODKEY Mod1Mask
-#define MONKEY Mod4Mask
+#define MODKEY Mod4Mask
+// #define MONKEY Mod4Mask
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
@@ -11,7 +11,7 @@
 
 /* appearance */
 static const char font[]            = "Ubuntu Mono:size=9:antialias=true:hinting=true"; /*:rgba=rgb:hintstyle=hintsfull:lcdfilter=lcdlight:dpi=96";*/
-static const char wallpaper[]       = "/home/jente/Downloads/Achtergronden/7864597230_c0fb932d1d_h.jpg";
+static const char wallpaper[]       = "/home/lluis/.share/wallpaper.jpg";
 static const char colors[NUMCOLORS][ColLast][9] = {
     /* border   foreground  background */
     { "#93a1a1", "#93a1a1", "#FFFFFF" },
@@ -58,12 +58,11 @@ static const Tag tags[] = {
 static const Rule rules[] = {
     /*WM_CLASS              WM_CLASS    WM_NAME
       class                 instance    title               tags mask   isfloating  monitor */
-    { "Firefox",            NULL,       NULL,               1,          False,      -1 },
+    { "Chromium",            NULL,       NULL,               1,          False,      -1 },
     { "Skype",              NULL,       NULL,               1 << 1,     False,      -1 },
     { "Skype",              NULL,       "Call with Aggi~",  1 << 1,     True,       -1 },
     { "Gxms",               NULL,       NULL,               1 << 1,     False,      -1 },
     { "URxvt", 			    NULL,       NULL,               1 << 2,     False,      -1 },
-    { "Gedit",              NULL,       NULL,               1 << 2,     False,      -1 },
     { "Audacious",          NULL,       NULL,               1 << 3,     False,      -1 },
     { "MPlayer",            NULL,       NULL,               1 << 3,     True,       -1 },
     { "Gimp",               NULL,       NULL,               1 << 3,     False,      -1 },
@@ -75,15 +74,16 @@ static const Rule rules[] = {
     { "Evince",             NULL,       NULL,               1 << 4,     False,      -1 },
 	{ "libreoffice-writer", NULL,       NULL,               1 << 4,     False,      -1 },
 	{ "libreoffice-startcenter", NULL,  NULL,               1 << 4,     False,      -1 },
+	{ "subl",              	NULL,       NULL,               1 << 4,     False,      -1 },
 };
 
 /* commands */
-static const char *dmenu[]   = { "dmenu_run", "-f", "-p", "Uitvoeren:", NULL };
+static const char *dmenu[]   = { "dmenu_run", "-f", "-p", "Run:", NULL };
 static const char *find[]    = { "dmenu_finder", NULL };
 static const char *dmfm[]    = { "dmenu_fm", NULL };
 static const char *term[]    = { "urxvtc", NULL };
-static const char *browser[] = { "firefox", NULL };
-static const char *files[]   = { "nautilus", NULL };
+static const char *browser[] = { "chromium", NULL };
+static const char *files[]   = { "urxvtc", "-e", "ranger", NULL };
 static const char *music[]   = { "audacious", NULL };
 static const char *skype[]   = { "skype", NULL };
 static const char *scrot[]   = { "gnome-screenshot", NULL };
@@ -97,6 +97,7 @@ static const char *play[]    = { "audtool", "playback-playpause", NULL };
 static const char *next[]    = { "audtool", "playlist-advance", NULL };
 static const char *prev[]    = { "audtool", "playlist-reverse", NULL };
 static const char *stop[]    = { "audtool", "playback-stop", NULL };
+static const char *subl[]	 = { "subl", NULL};
 
 /* shortcuts */
 static Key keys[] = {
@@ -111,15 +112,7 @@ static Key keys[] = {
 	{ MODKEY,                   XK_2,                       spawn,          {.v = browser } },
 	{ MODKEY,                   XK_3,                       spawn,          {.v = files } },
 	{ MODKEY,                   XK_4,                       spawn,          {.v = music } },
-	{ MODKEY,                   XK_5,                       spawn,          {.v = skype } },
-	{ 0,                        XK_Print,                   spawn,          {.v = scrot } },
-	{ 0,                        XF86XK_AudioRaiseVolume,    spawn,          {.v = volup } },
-	{ 0,                        XF86XK_AudioLowerVolume,    spawn,          {.v = voldown } },
-	{ 0,                        XF86XK_AudioMute,           spawn,          {.v = volmute } },
-	{ 0,                        XF86XK_AudioPlay,           spawn,          {.v = play } },
-	{ 0,                        XF86XK_AudioNext,           spawn,          {.v = next } },
-	{ 0,                        XF86XK_AudioPrev,           spawn,          {.v = prev } },
-	{ 0,                        XF86XK_AudioStop,           spawn,          {.v = stop } },
+	{ MODKEY,                   XK_5,                       spawn,          {.v = subl } },
 	{ MODKEY|ControlMask,       XK_b,                       togglebar,      {0} },
 	{ MODKEY|ControlMask,       XK_q,                       quit,           {0} },
 	{ MODKEY,                   XK_Tab,                     focusstack,     {.i = +1 } },
@@ -153,10 +146,10 @@ static Key keys[] = {
 	TAGKEYS(                    XK_F5,                      4)
 	{ MODKEY,                   XK_a,                       view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,         XK_a,                       tag,            {.ui = ~0 } },
-	{ MONKEY,                   XK_Left,                    focusmon,       {.i = -1 } },
-	{ MONKEY,                   XK_Right,                   focusmon,       {.i = +1 } },
-	{ MONKEY|ShiftMask,         XK_Left,                    tagmon,         {.i = -1 } },
-	{ MONKEY|ShiftMask,         XK_Right,                   tagmon,         {.i = +1 } },
+	{ MODKEY|ControlMask,                   XK_Left,                    focusmon,       {.i = -1 } },
+	{ MODKEY|ControlMask,                   XK_Right,                   focusmon,       {.i = +1 } },
+	{ MODKEY|ControlMask|ShiftMask,         XK_Left,                    tagmon,         {.i = -1 } },
+	{ MODKEY|ControlMask|ShiftMask,         XK_Right,                   tagmon,         {.i = +1 } },
 };
 
 /* mouse button */

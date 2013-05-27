@@ -1,0 +1,28 @@
+--- dwm.c.orig	2013-03-27 16:36:32.416636802 +0100
++++ dwm.c	2013-03-27 16:37:51.526635474 +0100
+@@ -101,6 +101,7 @@
+ 	int x, y, w, h;
+ 	unsigned long norm[ColLast];
+ 	unsigned long sel[ColLast];
++	unsigned long sym[ColLast];
+ 	Drawable drawable;
+ 	GC gc;
+ 	struct {
+@@ -737,7 +738,7 @@
+ 		dc.x += dc.w;
+ 	}
+ 	dc.w = blw = TEXTW(m->ltsymbol);
+-	drawtext(m->ltsymbol, dc.norm, False);
++	drawtext(m->ltsymbol, dc.sym, False);
+ 	dc.x += dc.w;
+ 	x = dc.x;
+ 	if(m == selmon) { /* status is only drawn on selected monitor */
+@@ -1618,6 +1619,8 @@
+ 	dc.sel[ColBorder] = getcolor(selbordercolor);
+ 	dc.sel[ColBG] = getcolor(selbgcolor);
+ 	dc.sel[ColFG] = getcolor(selfgcolor);
++	dc.sym[ColFG] = getcolor(symfgcolor);
++	dc.sym[ColBG] = getcolor(symbgcolor);
+ 	dc.drawable = XCreatePixmap(dpy, root, DisplayWidth(dpy, screen), bh, DefaultDepth(dpy, screen));
+ 	dc.gc = XCreateGC(dpy, root, 0, NULL);
+ 	XSetLineAttributes(dpy, dc.gc, 1, LineSolid, CapButt, JoinMiter);
