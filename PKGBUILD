@@ -55,3 +55,25 @@ package() {
   make PREFIX=/usr DESTDIR=$pkgdir install
   install -m644 -D LICENSE $pkgdir/usr/share/licenses/$pkgname/LICENSE
 }
+md5sums=('8bb00d4142259beb11e13473b81c0857'
+         '5621a5627e402306fde977eee2183fb9'
+         'b8de5bdd45e3736cf2e6b0277301e196'
+         'af6c17f901ad910f1361ce1c25070b03'
+         '14b0c80bab839935d6cab83a5e8bc147'
+         'b583a32067f9a7c842877e9d8db3f228'
+         '9f94d270898ac0dea4212ceb120ed3a6'
+         'f099928846b74a600e4b24d7cfb61656'
+         '455be45ad6a061f73faa8438ee4c917f'
+         'b50db47f358e21b2c58399f6424d339a'
+         'cfa58980d1924cd0959fc65323916144'
+         'e43544c2ab6116efc5a7e2e21cb730e2'
+         'bc7d12946c77113a7e9a73c99ef81b9f'
+         'b2db1e0d0265d381a45c66f28d11c27d'
+         '161ede77c64f21555db333f2212e9533'
+         'cc215a75d74f8dc442ea23b151eb7e67'
+         'b8b6883b4dabd2a4283cec153a2f97dc'
+         'e3c4e9039974a97803d0071a7f0fb762'
+         '99c608a822f3b43a065093ea7b8fee56'
+         'fcc18a0c8a4b0183127e1c7c6da6fa86'
+         'f0e7a4bb62a395942f435d613231c3b5'
+         '6e94ec1bd6b4cb29eebffd5e7dd686f1')
