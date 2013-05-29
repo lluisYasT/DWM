@@ -26,6 +26,7 @@ static const unsigned int snap           = 2;      /* Snap pixel */
 static const unsigned int minwsz         = 20;     /* Minimal heigt of a client for smfact */
 static const float mfact                 = 0.63;   /* factor of master area size [0.05..0.95] */
 static const float smfact                = 0.00;   /* factor of tiled clients [0.05..1.00] */
+static const char chatclient[]           = "jente_etnej - Skype™"; /* Name of chat client for chatlayout */
 static const char clock_fmt[]            = "%a %d %b, %R";         /* Clock format on the bar */
 static const char clsymbol[]             = "×";    /* Symbol for close button */
 static const int nmaster                 = 1;      /* number of clients in master area */
@@ -57,14 +58,10 @@ static const Tag tags[] = {
 static const Rule rules[] = {
     /*WM_CLASS              WM_CLASS    WM_NAME
 	class                 instance    title               tags mask   isfloating  monitor */
-	{ "Chromium",            NULL,       NULL,               1,          False,      -1 },
 	{ "Chrome",            NULL,       NULL,               1,          False,      -1 },
 	{ "MPlayer",            NULL,       NULL,               1 << 3,     True,       -1 },
 	{ "Gimp",               NULL,       NULL,               1 << 3,     False,      -1 },
 	{ "Eog",                NULL,       NULL,               1 << 3,     False,      -1 },
-	{ "Cheese",             NULL,       NULL,               1 << 3,     False,      -1 },
-	{ "Brasero",            NULL,       NULL,               1 << 3,     False,      -1 },
-	{ "Transmission-gtk",   NULL,       NULL,               1 << 3,     False,      -1 },
 	{ "VirtualBox",         NULL,       NULL,               1 << 3,     False,      -1 },
 	{ "Evince",             NULL,       NULL,               1 << 4,     False,      -1 },
 	{ "libreoffice-writer", NULL,       NULL,               1 << 4,     False,      -1 },
@@ -76,7 +73,7 @@ static const Rule rules[] = {
 static const char *dmenu[]   = { "dmenu_run", "-f", "-p", "Run:", NULL };
 static const char *find[]    = { "dmenu_finder", NULL };
 static const char *dmfm[]    = { "dmenu_fm", NULL };
-static const char *term[]    = { "urxvtc", "-e", "tmux", NULL };
+static const char *term[]    = { "urxvtc", "-e", "tmux",NULL };
 static const char *browser[] = { "google-chrome", NULL };
 static const char *files[]   = { "urxvtc", "-e", "ranger", NULL };
 static const char *music[]   = { "audacious", NULL };
@@ -88,6 +85,10 @@ static const char *halt[]    = { "dmenu_shutdown", NULL };
 static const char *volup[]   = { "amixer", "-q", "sset", "Master", "5%+", "unmute", NULL };
 static const char *voldown[] = { "amixer", "-q", "sset", "Master", "5%-", "unmute", NULL };
 static const char *volmute[] = { "amixer", "-q", "sset", "Master", "toggle", NULL };
+static const char *play[]    = { "audtool", "playback-playpause", NULL };
+static const char *next[]    = { "audtool", "playlist-advance", NULL };
+static const char *prev[]    = { "audtool", "playlist-reverse", NULL };
+static const char *stop[]    = { "audtool", "playback-stop", NULL };
 static const char *subl[]	 = { "subl", NULL};
 
 /* shortcuts */
@@ -95,7 +96,7 @@ static Key keys[] = {
 	/* modifier                 key        function        argument */
 	{ MODKEY,                   XK_r,                       spawn,          {.v = dmenu } },
 	{ MODKEY,                   XK_x,                       spawn,          {.v = kill } },
-	{ MODKEY,                   XK_l,                       spawn,          {.v = lock } },
+	{ MODKEY|ControlMask,       XK_l,                       spawn,          {.v = lock } },
 	{ MODKEY,                   XK_Escape,                  spawn,          {.v = halt } },
 	{ MODKEY,                   XK_z,                       spawn,          {.v = find } },
 	{ MODKEY,                   XK_o,                       spawn,          {.v = dmfm } },
