@@ -61,6 +61,7 @@ static const Rule rules[] = {
 	{ "Chrome",            NULL,       NULL,               1,          False,      -1 },
 	{ "MPlayer",            NULL,       NULL,               1 << 3,     True,       -1 },
 	{ "Gimp",               NULL,       NULL,               1 << 3,     False,      -1 },
+	{ "Darktable",               NULL,       NULL,               1 << 3,     False,      -1 },
 	{ "Eog",                NULL,       NULL,               1 << 3,     False,      -1 },
 	{ "VirtualBox",         NULL,       NULL,               1 << 3,     False,      -1 },
 	{ "Evince",             NULL,       NULL,               1 << 4,     False,      -1 },
@@ -73,9 +74,9 @@ static const Rule rules[] = {
 static const char *dmenu[]   = { "dmenu_run", "-f", "-p", "Run:", NULL };
 static const char *find[]    = { "dmenu_finder", NULL };
 static const char *dmfm[]    = { "dmenu_fm", NULL };
-static const char *term[]    = { "urxvtc", "-e", "tmux",NULL };
+static const char *term[]    = { "st", "-e", "tmux",NULL };
 static const char *browser[] = { "google-chrome", NULL };
-static const char *files[]   = { "urxvtc", "-e", "ranger", NULL };
+static const char *files[]   = { "st", "-e", "ranger", NULL };
 static const char *music[]   = { "audacious", NULL };
 static const char *skype[]   = { "skype", NULL };
 static const char *scrot[]   = { "gnome-screenshot", NULL };
