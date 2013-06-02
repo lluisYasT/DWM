@@ -2,7 +2,7 @@
 #include <X11/XF86keysym.h>
 
 #define NUMCOLORS 4
-#define MODKEY Mod1Mask
+#define MODKEY Mod4Mask
 // #define MONKEY Mod4Mask
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 #define TAGKEYS(KEY,TAG) \
