@@ -14,10 +14,10 @@ static const char font[]            = "Ubuntu Mono:size=9:antialias=true:hinting
 static const char wallpaper[]       = "/home/lluis/.share/wallpaper.jpg";
 static const char colors[NUMCOLORS][ColLast][9] = {
     /* border   foreground  background */
-    { "#93a1a1", "#93a1a1", "#FFFFFF" },
-    { "#073642", "#073642", "#FFFFFF" },
-    { "#CB4B16", "#Cb4B16", "#FFFFFF" },
-    { "#16596A", "#93a1a1", "#FFFFFF" },
+    { "#93a1a1", "#FFFFFF" , "#073642"},
+    { "#073642", "#FFFFFF" , "#073642"},
+    { "#CB4B16", "#FFFFFF" , "#073642"},
+    { "#16596A", "#FFFFFF" , "#073642"},
 };
 
 /* settings */
